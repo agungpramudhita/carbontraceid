@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonTrace ID - Blockchain Carbon Offset Platform</title>
+    <style>
+        /* VARIABLES */
+        :root {
+            --primary-green: #00c853;
+            --dark-green: #009624;
+            --tech-blue: #00b8d4;
+            --dark-blue: #006978;
+            --neutral-white: #ffffff;
+            --neutral-gray: #f5f5f5;
+            --dark-gray: #263238;
+        }
+
+        /* GLOBAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--neutral-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--dark-blue) 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--neutral-white);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            background-color: var(--tech-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--neutral-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--tech-blue);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--neutral-white);
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary-green), var(--tech-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary-green), var(--tech-blue));
+            color: var(--neutral-white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ABOUT SECTION */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* SOLUTIONS SECTION */
+        .solutions {
+            background-color: var(--neutral-white);
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, var(--neutral-white) 0%, var(--neutral-gray) 100%);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--primary-green);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .solution-icon {
+            background-color: var(--tech-blue);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--neutral-white);
+            font-size: 1.5rem;
+        }
+
+        /* TECHNOLOGY SECTION */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, var(--neutral-white) 0%, var(--neutral-gray) 100%);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            color: var(--tech-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* TEAM SECTION */
+        .team {
+            background-color: var(--neutral-white);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .team-card {
+            text-align: center;
+            background-color: var(--neutral-white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background-color: var(--neutral-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--tech-blue);
+            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ROADMAP SECTION */
+        .roadmap-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-green), var(--tech-blue));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+
+        .timeline-content {
+            background-color: var(--neutral-white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-green);
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: var(--tech-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* COLLABORATION SECTION */
+        .collaboration {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--dark-blue) 100%);
+            color: var(--neutral-white);
+            text-align: center;
+        }
+
+        .collaboration h2 {
+            color: var(--neutral-white);
+        }
+
+        .collaboration p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--neutral-white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            color: var(--tech-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--neutral-white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--tech-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--tech-blue);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .about-content,
+            .solutions-grid,
+            .tech-grid,
+            .team-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                margin-bottom: 2rem;
+            }
+            
+            .roadmap-timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-content {
+                margin-left: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <span>CarbonTrace ID</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#about">Tentang</a>
+                    <a href="#solutions">Solusi</a>
+                    <a href="#technology">Teknologi</a>
+                    <a href="#team">Tim</a>
+                    <a href="#roadmap">Roadmap</a>
+                    <a href="#contact">Kontak</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h1>Masa Depan Karbon yang Transparan & Terukur</h1>
+            <p>Platform blockchain pertama di Indonesia untuk verifikasi, sertifikasi, dan perdagangan kredit karbon yang aman dan transparan</p>
+            <a href="#contact" class="cta-button">Mulai Kolaborasi</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang CarbonTrace ID</h2>
+                <p>Platform digital berbasis blockchain dan cybersecurity untuk memverifikasi, menjamin, dan memperdagangkan carbon offset di Indonesia menuju Net Zero Emission 2060</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>CarbonTrace ID menghadirkan revolusi dalam ekosistem karbon Indonesia dengan menggabungkan teknologi blockchain mutakhir dan prinsip cybersecurity untuk menciptakan sistem yang transparan, aman, dan dapat diakses oleh semua pihak.</p>
+                    <br>
+                    <p>Kami memungkinkan UMKM, petani, dan komunitas hijau untuk berpartisipasi aktif dalam pasar karbon dengan sistem verifikasi yang dapat dipercaya dan sertifikat yang tidak dapat dipalsukan.</p>
+                    <br>
+                    <p>Dengan pendekatan <strong>cybersecurity-by-design</strong>, kami memastikan setiap lapisan teknologi dilindungi dengan standar keamanan tertinggi.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Blockchain Technology">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS SECTION -->
+    <section id="solutions" class="solutions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Solusi Kami</h2>
+                <p>CarbonTrace ID menawarkan solusi lengkap untuk ekosistem karbon Indonesia</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Integritas Data Terjamin</h3>
+                    <p>Teknologi decentralized ledger yang tidak dapat dimanipulasi menjamin keaslian dan keutuhan data carbon offset.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Verifikasi Otomatis</h3>
+                    <p>Smart contract memverifikasi data secara otomatis berdasarkan metodologi yang diakui, mengurangi biaya dan waktu verifikasi manual.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Sertifikasi Anti-Pemalsuan</h3>
+                    <p>Penerbitan sertifikat carbon offset berbasis NFT yang tidak bisa dipalsukan dan dapat diverifikasi oleh semua pihak.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Marketplace Terverifikasi</h3>
+                    <p>Platform jual beli carbon credit yang aman, hanya dapat diakses oleh entitas terverifikasi dengan sistem enkripsi end-to-end.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNOLOGY SECTION -->
+    <section id="technology">
+        <div class="container">
+            <div class="section-title">
+                <h2>Teknologi Kami</h2>
+                <p>Menggabungkan inovasi blockchain dan keamanan siber untuk ekosistem karbon yang andal</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>Blockchain Engine</h3>
+                    <p>Menyimpan data secara immutable, transparan, dan terdesentralisasi dengan teknologi ledger terdistribusi.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Smart Contract System</h3>
+                    <p>Memverifikasi data dan mengeluarkan NFT sebagai sertifikat carbon credit secara otomatis dan terpercaya.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>NFT Carbon Certificate</h3>
+                    <p>Mengubah verifikasi menjadi NFT yang unik dan dapat diverifikasi, mencegah pemalsuan sertifikat.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Carbon Marketplace</h3>
+                    <p>Platform jual beli yang mempertemukan penjual dan pembeli carbon credit dengan sistem terenkripsi.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Cybersecurity Layer</h3>
+                    <p>Enkripsi AES-256, autentikasi dua faktor, dan identitas terdesentralisasi (DID) melindungi seluruh sistem.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Web & Mobile App</h3>
+                    <p>Antarmuka pengguna intuitif untuk pendaftaran proyek, input data, dan pelacakan sertifikasi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tim Kami</h2>
+                <p>Didukung oleh tim profesional dengan pengalaman di bidang teknologi, keamanan siber, dan bisnis</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Agung Nugroho Pramudhita</h3>
+                    <p>Chief Executive Officer</p>
+                    <p>Level 3 Award in Leadership (ILM), Regional Project Manager Bebras Indonesia</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3>Vipkas Al Hadid Firdaus</h3>
+                    <p>Chief Technology Officer</p>
+                    <p>Certified Ethical Hacker (CEH), Computer Hacking Forensic Investigator (CHFI)</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Farid Angga Pribadi</h3>
+                    <p>Chief Financial Officer</p>
+                    <p>Cobit 5 Foundation, Certified Business Analyst</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP SECTION -->
+    <section id="roadmap">
+        <div class="container">
+            <div class="section-title">
+                <h2>Roadmap Pengembangan</h2>
+                <p>Perjalanan CarbonTrace ID menuju platform karbon terdepan di Indonesia</p>
+            </div>
+            <div class="roadmap-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">Tahun 1</div>
+                        <h3>Fase Inisiasi & MVP</h3>
+                        <ul>
+                            <li>Finalisasi Minimum Viable Product</li>
+                            <li>Pilot project dengan 3-5 proyek lokal</li>
+                            <li>Integrasi sensor IoT & AI untuk verifikasi otomatis</li>
+                            <li>Onboarding 100 proyek karbon skala kecil</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">Tahun 2-3</div>
+                        <h3>Fase Ekspansi & Integrasi</h3>
+                        <ul>
+                            <li>Integrasi dengan Bursa Karbon Nasional & ASEAN</li>
+                            <li>Pengembangan fitur marketplace global</li>
+                            <li>Ekspansi kemitraan dengan korporasi besar</li>
+                            <li>Mencapai 500+ proyek terdaftar</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">Tahun 4-5</div>
+                        <h3>Fase Skala & Globalisasi</h3>
+                        <ul>
+                            <li>Mencapai 1000+ proyek terdaftar</li>
+                            <li>Menjadi platform terpercaya di ASEAN dan internasional</li>
+                            <li>Penggunaan teknologi AI & Big Data untuk analisis karbon</li>
+                            <li>Ekspansi ke pasar global dengan fokus negara berkembang</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLABORATION SECTION -->
+    <section id="contact" class="collaboration">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mari Berkolaborasi</h2>
+                <p>Bergabunglah dengan kami dalam menciptakan masa depan karbon yang lebih transparan dan berkelanjutan untuk Indonesia</p>
+            </div>
+            <a href="https://wa.me/6281334699967" class="cta-button" target="_blank" rel="noopener noreferrer">Hubungi Kami</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CarbonTrace ID</h3>
+                    <p>Platform blockchain dan cybersecurity untuk verifikasi, sertifikasi, dan perdagangan kredit karbon di Indonesia.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#solutions">Solusi</a></li>
+                        <li><a href="#technology">Teknologi</a></li>
+                        <li><a href="#team">Tim Kami</a></li>
+                        <li><a href="#roadmap">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Layanan</h3>
+                    <ul>
+                        <li><a href="#">Verifikasi Karbon</a></li>
+                        <li><a href="#">Sertifikasi NFT</a></li>
+                        <li><a href="#">Marketplace Karbon</a></li>
+                        <li><a href="#">Konsultasi Proyek</a></li>
+                        <li><a href="#">Integrasi Sistem</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> hello@carbontraceid.com</li>
+                        <li><i class="fas fa-globe"></i> www.carbontraceid.com</li>
+                        <li><i class="fab fa-linkedin"></i> CarbonTrace ID</li>
+                        <li><i class="fab fa-instagram"></i> @carbontraceid</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CarbonTrace ID. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
